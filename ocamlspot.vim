@@ -17,13 +17,13 @@ def spot(buffer_name, row, col):
 
     for line in Popen(command, stdout=PIPE, shell=True).stdout:
         kv = re.match("^Spot: (.*):(l[0-9]+c[0-9]+b[0-9]+):(l[0-9]+c[0-9]+b[0-9]+)$", line)
-    if kv:
-        (l1,c1) = parse_loc(kv.group(2))
-        (l2,c2) = parse_loc(kv.group(3))
-        #print kv.group(1) + " " + str(l1) + "/" + str(c1) + " " + str(l2) + "/" + str(c2) + " 2>&1"
-        vim.command(":split " + kv.group(1))
-        vim.current.window.cursor = (l1, c1)
-        vim.command("normal zz")
+        if kv:
+            (l1,c1) = parse_loc(kv.group(2))
+            (l2,c2) = parse_loc(kv.group(3))
+            #print kv.group(1) + " " + str(l1) + "/" + str(c1) + " " + str(l2) + "/" + str(c2) + " 2>&1"
+            vim.command(":split " + kv.group(1))
+            vim.current.window.cursor = (l1, c1)
+            vim.command("normal zz")
 
 def get_signature_all(pipe):
     recording = False
