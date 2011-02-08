@@ -13,17 +13,15 @@ def parse_loc(str):
         return None
 
 def spot(buffer_name, row, col):
-    command = "ocamlspot " + buffer_name + ":l" + str(row) + "c" + str(col) + " 2>&1"
+    command = "ocamlspot %s:l%dc%d 2>&1" % (buffer_name, row, col)
 
     for line in Popen(command, stdout=PIPE, shell=True).stdout:
         kv = re.match("^Spot: (.*):(l[0-9]+c[0-9]+b[0-9]+):(l[0-9]+c[0-9]+b[0-9]+)$", line)
         if kv:
             (l1,c1) = parse_loc(kv.group(2))
             (l2,c2) = parse_loc(kv.group(3))
-            #print kv.group(1) + " " + str(l1) + "/" + str(c1) + " " + str(l2) + "/" + str(c2) + " 2>&1"
-            vim.command(":split " + kv.group(1))
+            vim.command("split %s" % kv.group(1))
             vim.current.window.cursor = (l1, c1)
-            vim.command("normal zz")
 
 def get_signature_all(pipe):
     recording = False
@@ -40,7 +38,8 @@ def get_signature_all(pipe):
             lines.append(line)
 
 def print_type(buffer_name, row, col):
-    command = "ocamlspot -n " + buffer_name + ":l" + str(row) + "c" + str(col) + " 2>&1"
+    command = "ocamlspot -n %s:l%dc%d 2>&1" % (buffer_name, row, col)
+
     pipe = Popen(command, stdout=PIPE, shell=True).stdout
     signature = get_signature_all(pipe)
 
@@ -54,13 +53,13 @@ def print_type(buffer_name, row, col):
         # if a module: do some kind of intellisense
         #   - would require either lookup by symbol, or constant compilation
         # if a function: print the signature
-        vim.command(":rightbelow 10new")
+        vim.command("rightbelow 10new")
         outputWindow = vim.current.window
         for line in signature:
             outputWindow.buffer.append(line)
         # Save the buffer to /tmp so we don't have to force quit.
         # :silent prevents the annoying save confirmation.
-        vim.command(":silent write /tmp/typesig_%s.tmp" % uuid.uuid4().hex)
+        vim.command("silent write /tmp/typesig_%s.tmp" % uuid.uuid4().hex)
         print "Type signature has %d lines." % len(signature)
     return 0
 
