@@ -1,9 +1,14 @@
-:python << EOF
+python << EOF
 
 import vim
 import re
 import uuid
 from subprocess import Popen, PIPE
+
+def get_vim_status():
+    buffer_name = vim.current.buffer.name
+    (row, col) = vim.current.window.cursor
+    return (buffer_name, row, col)
 
 def parse_loc(str):
     kv = re.match("^l([0-9]+)c([0-9]+)b[0-9]+$", str)
@@ -12,7 +17,8 @@ def parse_loc(str):
     else:
         return None
 
-def spot(buffer_name, row, col):
+def spot():
+    (buffer_name, row, col) = get_vim_status()
     command = "ocamlspot %s:l%dc%d 2>&1" % (buffer_name, row, col)
 
     for line in Popen(command, stdout=PIPE, shell=True).stdout:
@@ -23,7 +29,7 @@ def spot(buffer_name, row, col):
             vim.command("split %s" % kv.group(1))
             vim.current.window.cursor = (l1, c1)
 
-def get_signature_all(pipe):
+def get_type_signature(pipe):
     recording = False
     lines = []
     while True:
@@ -37,11 +43,12 @@ def get_signature_all(pipe):
         if recording:
             lines.append(line)
 
-def print_type(buffer_name, row, col):
+def print_type():
+    (buffer_name, row, col) = get_vim_status()
     command = "ocamlspot -n %s:l%dc%d 2>&1" % (buffer_name, row, col)
 
     pipe = Popen(command, stdout=PIPE, shell=True).stdout
-    signature = get_signature_all(pipe)
+    signature = get_type_signature(pipe)
 
     if len(signature) == 0:
         print "Type: not found"
@@ -66,26 +73,16 @@ def print_type(buffer_name, row, col):
 EOF
 
 function! OCamlSpot()
-:python << EOF
-
-(row, col) = vim.current.window.cursor
-buffer_name = vim.current.buffer.name
-spot(buffer_name, row, col)
-
+python << EOF
+spot()
 EOF
-
 endfunction
 
 function! OCamlType()
-:python << EOF
-
-(row, col) = vim.current.window.cursor
-buffer_name = vim.current.buffer.name
-print_type(buffer_name, row, col)
-
+python << EOF
+print_type()
 EOF
-
 endfunction
 
-:map <F3> :call OCamlSpot()<CR>
-:map <F4> :call OCamlType()<CR>
+map <F3> :call OCamlSpot()<CR>
+map <F4> :call OCamlType()<CR>
