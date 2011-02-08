@@ -17,7 +17,7 @@ def parse_loc(str):
     else:
         return None
 
-def spot():
+def spot(split = False):
     (buffer_name, row, col) = get_vim_status()
     command = "ocamlspot %s:l%dc%d 2>&1" % (buffer_name, row, col)
 
@@ -26,7 +26,8 @@ def spot():
         if kv:
             (l1,c1) = parse_loc(kv.group(2))
             (l2,c2) = parse_loc(kv.group(3))
-            vim.command("split %s" % kv.group(1))
+            vim_command = "split" if split else "edit"
+            vim.command("%s %s" % (vim_command, kv.group(1)))
             vim.current.window.cursor = (l1, c1)
 
 def get_type_signature(pipe):
@@ -78,11 +79,18 @@ spot()
 EOF
 endfunction
 
+function! OCamlSpotSplit()
+python << EOF
+spot(split = True)
+EOF
+endfunction
+
 function! OCamlType()
 python << EOF
 print_type()
 EOF
 endfunction
 
-map <F3> :call OCamlSpot()<CR>
+map <F2> :call OCamlSpot()<CR>
+map <F3> :call OCamlSpotSplit()<CR>
 map <F4> :call OCamlType()<CR>
