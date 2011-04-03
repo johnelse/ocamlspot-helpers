@@ -18,4 +18,5 @@ To install:
 * Put ocamlspot.vim in ~/.vim/plugin
 * Put ocamlspot.py anywhere in your python path - you can list the suitable folders by running the following from a python shell:
 > import sys
+>
 > sys.path
