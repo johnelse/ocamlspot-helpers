@@ -17,7 +17,7 @@ The library provides two functions:
 
 * spot(buffer_name, row, col)
 
-This returns, as a tuple, the buffer_name, row and column number of the symbol at the specified position in the specified file.
+This returns, as a tuple, the filename, row and column number of the definition of the symbol at the specified position in the specified file.
 
 * get_type(buffer_name, row, col)
 
