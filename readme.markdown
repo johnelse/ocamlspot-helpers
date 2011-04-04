@@ -32,7 +32,7 @@ To install:
 
 * Put ocamlspot.vim in ~/.vim/plugin
 
-An example set of keybindings to use with the plugin are as follows:
+An example set of keybindings to use with the plugin are as follows - add them to ~/.vim/ftplugin/ocaml.vim:
 
     map <C-]> :call OCamlSpot()<CR>
     map <C-t> <C-o>
