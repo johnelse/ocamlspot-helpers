@@ -56,7 +56,3 @@ python << EOF
 print_type()
 EOF
 endfunction
-
-map <F2> :call OCamlSpot()<CR>
-map <F3> :call OCamlSpotSplit()<CR>
-map <F4> :call OCamlType()<CR>
