@@ -1,0 +1,12 @@
+OCAMLINCLUDES = ../lib
+
+OCAML_LIBS[] += ../lib/libvariant
+PROGRAM = test
+
+OCamlProgram($(PROGRAM), main)
+
+.DEFAULT: $(PROGRAM)
+
+.PHONY: clean
+clean:
+	rm -rf $(CLEAN_OBJS) $(PROGRAM)

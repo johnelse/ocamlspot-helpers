@@ -1,1 +1,17 @@
+*.a
+*.annot
+*.cma
+*.cmi
+*.cmo
+*.cmx
+*.cmxa
+*.o
+*.opt
+*.omc
+*.spit
+*.spot
 *.swp
+
+ocaml/.omakedb
+ocaml/.omakedb.lock
+ocaml/main/test

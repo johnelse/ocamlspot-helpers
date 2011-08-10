@@ -1,0 +1,5 @@
+OCamlLibrary(libvariant, variant)
+
+.PHONY: clean
+clean:
+	rm -rf $(CLEAN_OBJS)

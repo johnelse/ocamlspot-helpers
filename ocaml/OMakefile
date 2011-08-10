@@ -1,0 +1,9 @@
+OCAMLFLAGS += -annot
+
+BYTE_ENABLED = false
+NATIVE_ENABLED = true
+
+CLEAN_OBJS = *.cmi *.cmo *.cmx *.cma *.cmxa *.annot *.opt *.o *.a *.spit *.spot
+export CLEAN_OBJS
+
+.SUBDIRS: lib main
