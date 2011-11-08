@@ -12,7 +12,7 @@ def spot(buffer_name, row, col):
     command = "ocamlspot %s:l%dc%d 2>&1" % (buffer_name, row, col)
 
     for line in Popen(command, stdout=PIPE, shell=True).stdout:
-        matches = re.match("^Spot: (.*):(l[0-9]+c[0-9]+b[0-9]+):(l[0-9]+c[0-9]+b[0-9]+)$", line)
+        matches = re.match("^Spot: <(.*):(l[0-9]+c[0-9]+b[0-9]+):(l[0-9]+c[0-9]+b[0-9]+)>$", line)
         if matches:
             (l1,c1) = parse_loc(matches.group(2))
             (l2,c2) = parse_loc(matches.group(3))
