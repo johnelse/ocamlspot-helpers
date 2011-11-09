@@ -1,6 +1,9 @@
 import re
 from subprocess import Popen, PIPE
 
+def make_ocamlspot_command(buffer_name, row, col):
+    return "ocamlspot %s:l%dc%d 2>&1" % (buffer_name, row, col)
+
 def parse_loc(str):
     kv = re.match("^l([0-9]+)c([0-9]+)b[0-9]+$", str)
     if kv: 
@@ -9,7 +12,7 @@ def parse_loc(str):
         return None
 
 def spot(buffer_name, row, col):
-    command = "ocamlspot %s:l%dc%d 2>&1" % (buffer_name, row, col)
+    command = make_ocamlspot_command(buffer_name, row, col)
 
     for line in Popen(command, stdout=PIPE, shell=True).stdout:
         matches = re.match("^Spot: <(.*):(l[0-9]+c[0-9]+b[0-9]+):(l[0-9]+c[0-9]+b[0-9]+)>$", line)
@@ -33,7 +36,7 @@ def get_type_signature(pipe):
             lines.append(line)
 
 def get_type(buffer_name, row, col):
-    command = "ocamlspot -n %s:l%dc%d 2>&1" % (buffer_name, row, col)
+    command = make_ocamlspot_command(buffer_name, row, col)
     pipe = Popen(command, stdout=PIPE, shell=True).stdout
     signature = get_type_signature(pipe)
     return signature
