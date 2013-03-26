@@ -10,6 +10,8 @@
 *.omc
 *.spit
 *.spot
+*.cmt
+*.cmti
 *.swp
 
 testbed/.omakedb
