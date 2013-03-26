@@ -15,3 +15,5 @@
 ocaml/.omakedb
 ocaml/.omakedb.lock
 ocaml/main/test
+
+*.pyc
