@@ -20,7 +20,7 @@ flag:
 
 Alternatively, you can use a patched OCaml compiler that adds this flag by
 default based on an environemnt variable. This compiler can be obtained from
-`opam`.
+[OPAM](http://opam.ocamlpro.com/).
 
     opam switch 4.00.1+annot
 
