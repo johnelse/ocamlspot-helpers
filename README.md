@@ -50,6 +50,15 @@ e.g.:
 
     map <C-k> :call OCamlType()
 
+Still to be done
+================
+* Write a quick Vim help file under `doc/`;
+* Use `ftdetect` to only load this plugin for OCaml files;
+* Add default shortcuts.
+
+Contributions are more than welcome for any bugs or improvements, just submit a
+pull request.
+
 Acknowledgements
 ================
 Credit to [John Else](http://github.com/johnelse), from whom this repo was
