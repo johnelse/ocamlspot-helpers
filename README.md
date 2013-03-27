@@ -29,13 +29,13 @@ the docs for [OCamlSpotter](https://bitbucket.org/camlspotter/ocamlspot).
 
 Installation
 ============
-This plugin is written to be easily installable using Pathogen:
+This plugin is written to be easily installable using [Pathogen](https://github.com/tpope/vim-pathogen):
 
     cd ~
     git clone http://github.com/simonjbeaumont/vim-ocamlspot.git .vim/bunde/vim-ocamlspot
 
 Pro-tip: if you're keeping your Vim config under Git, consider using Git
-submodules for your plugins with Pathogen:
+submodules for your plugins (works very nicely with Pathogen):
 
     cd ~/.vim
     git submodule add http://github.com/simonjbeaumont/vim-ocamlspot.git bundle/vim-ocamlspot
