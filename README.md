@@ -8,7 +8,7 @@ the cursor with a keypress.
 Screenshot
 ==========
 
-![img/screenshot.png]
+![Screenshot](img/screenshot.png)
 
 Requirements
 ============
