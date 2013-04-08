@@ -1,4 +1,4 @@
-OCAMLFLAGS += -annot
+OCAMLFLAGS += -annot -bin-annot
 
 BYTE_ENABLED = false
 NATIVE_ENABLED = true
