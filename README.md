@@ -45,10 +45,16 @@ submodules for your plugins (works very nicely with Pathogen):
 Usage
 =====
 The plugin exports a function `OCamlType()` which can be called in Vim to show
-the type of the symbol under the cursor. This can be mapped in your `.vimrc`,
-e.g.:
+the type of the symbol under the cursor.
 
-    map <C-k> :call OCamlType()
+The functions `OCamlSpot()` and `OCamlSpotSplit()` can be used to jump to the
+definition of the symbol under the cursor. `OCamlSpotSplit()` opens the definition
+in a new split.
+
+These can be mapped in your `.vimrc`, e.g.:
+
+    map <C-k> :call OCamlType()<CR>
+    map <C-]> :call OCamlSpot()<CR>
 
 Still to be done
 ================
