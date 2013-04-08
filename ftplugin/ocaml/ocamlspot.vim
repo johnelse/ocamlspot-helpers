@@ -5,8 +5,8 @@ import vim
 import uuid
 
 # Add ../lib/ to path to get to ocamlspot.py
-libpath = os.path.join(os.path.dirname(os.path.dirname(
-    vim.eval("expand('<sfile>:p')"))), 'lib')
+libpath = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
+    vim.eval("expand('<sfile>:p')")))), 'lib')
 sys.path.append(libpath)
 
 import ocamlspot
