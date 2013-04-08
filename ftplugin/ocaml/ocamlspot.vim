@@ -1,5 +1,9 @@
-python << EOF
+if exists("g:loaded_ocamlspot")
+    finish
+endif
+let g:loaded_ocamlspot = 1
 
+python << EOF
 import os
 import vim
 import uuid
