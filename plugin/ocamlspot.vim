@@ -1,5 +1,6 @@
 python << EOF
 
+import os
 import vim
 import uuid
 
