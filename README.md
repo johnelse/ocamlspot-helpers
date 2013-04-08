@@ -32,7 +32,7 @@ Installation
 This plugin is written to be easily installable using [Pathogen](https://github.com/tpope/vim-pathogen):
 
     cd ~
-    git clone http://github.com/simonjbeaumont/vim-ocamlspot.git .vim/bunde/vim-ocamlspot
+    git clone http://github.com/simonjbeaumont/vim-ocamlspot.git .vim/bundle/vim-ocamlspot
 
 Pro-tip: if you're keeping your Vim config under Git, consider using Git
 submodules for your plugins (works very nicely with Pathogen):
