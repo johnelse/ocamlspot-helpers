@@ -10,8 +10,12 @@
 *.omc
 *.spit
 *.spot
+*.cmt
+*.cmti
 *.swp
 
-ocaml/.omakedb
-ocaml/.omakedb.lock
-ocaml/main/test
+testbed/.omakedb
+testbed/.omakedb.lock
+testbed/main/test
+
+*.pyc
